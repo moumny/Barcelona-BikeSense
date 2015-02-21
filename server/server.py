@@ -29,10 +29,6 @@ api_key = os.environ["API_KEY"]
 cartodb_domain = 'moumny'
 cl = CartoDBAPIKey(api_key, cartodb_domain)
 
-lat = random()
-lon = random()
-
-
 @app.route('/')
 def index():
     logger.warning("hit!")
@@ -56,11 +52,11 @@ def add_measurement():
                 lat = m["data"]["Latitude"]
                 lon = m["data"]["Longitude"]
             else:
-                m["lat"] = lat
-                m["lon"] = lon
+                m["lat"] = lat + random() - 0.5
+                m["lon"] = lon + random() - 0.5
                 logging.debug(cl.sql(
                     'insert into test(timestamp, sensortype, sensor_value, the_geom) values (%d, \'%s\', %d, ST_SetSRID(ST_Point(%f, %f),4326));'
-                    % (m["timestamp"], m["sensortype"], m["sensor_value"], lon, lat)))
+                    % (m["timestamp"], m["sensortype"], m["sensor_value"], m["lon"], m["lat"])))
             resp = doc.post(params=m)
             logger.debug(resp.json())
         except Exception, e:
