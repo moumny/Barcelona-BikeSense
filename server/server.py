@@ -1,8 +1,11 @@
 #!flask/bin/python
 import json
+from random import random
 import sys
 import os
 import logging
+import cloudant
+from cartodb import CartoDBAPIKey, CartoDBException
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -16,6 +19,19 @@ ch.setFormatter(formatter)
 root.addHandler(ch)
 logger = logging.getLogger(__name__)
 
+j = json.loads(os.environ["VCAP_SERVICES"])
+url = j[u'cloudantNoSQLDB'][0][u'credentials'][u'url']
+
+db = cloudant.Database(url)
+doc = db['measurements']
+
+api_key = os.environ["API_KEY"]
+cartodb_domain = 'moumny'
+cl = CartoDBAPIKey(api_key, cartodb_domain)
+
+lat = random()
+lon = random()
+
 
 @app.route('/')
 def index():
@@ -25,15 +41,30 @@ def index():
 
 @app.route('/measurements', methods=['GET'])
 def list_measurements():
-    logger.debug(os.environ["VCAP_SERVICES"])
-    j = json.loads(os.environ["VCAP_SERVICES"])
     return "Nothing here"
 
 
 @app.route('/measurements', methods=['POST'])
 def add_measurement():
+    global lat
+    global lon
     content = request.get_json(force=True)
     logger.debug(content)
+    for m in content:
+        try:
+            if m["sensortype"] == "position":
+                lat = m["data"]["Latitude"]
+                lon = m["data"]["Longitude"]
+            else:
+                m["lat"] = lat
+                m["lon"] = lon
+                logging.debug(cl.sql(
+                    'insert into test(timestamp, sensortype, sensor_value, the_geom) values (%d, \'%s\', %d, ST_SetSRID(ST_Point(%f, %f),4326));'
+                    % (m["timestamp"], m["sensortype"], m["sensor_value"], lon, lat)))
+            resp = doc.post(params=m)
+            logger.debug(resp.json())
+        except Exception, e:
+            logger.warning("Invalid measurement: %s %s" % (m, e))
     return "Written!"
 
 
