@@ -1,17 +1,8 @@
-
-// Prepare data url from couchdb
-
-
-// Import data to CartoDB
-//curl -v -H "Content-Type: application/json" -d '{"url":"https://examplehost.com/sample.csv"}' 
-//"https://documentation.cartodb.com/api/v1/imports/?api_key=ec2a603b19584bd7cf2338b370947852b6080927"`
-
-// Display Map
-
 window.onload = function() {
         var vizjson = 'http://moumny.cartodb.com/api/v2/viz/d67864b2-b9e5-11e4-ac53-0e9d821ea90d/viz.json';
         cartodb.createVis('map', vizjson);
 
+/////// Chart /////////////////////////////////////////////////////////////////////////
 
         var ctx = document.getElementById("chart").getContext("2d");
 		ctx.canvas.width  = window.innerWidth;
