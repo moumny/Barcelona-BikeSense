@@ -7,7 +7,7 @@ $("#showTemperatureChart").on("click", function(evt){
       $("#chartSelector .btn").removeClass("btn-info").addClass("btn-default");
      $(evt.target).addClass("btn-info");
      requestData("temperature", function(result){
-         pollutionCallback(result, "Temperature", "°");        
+         pollutionCallback(result, "Temperature", "°C");        
      });
 });
 
