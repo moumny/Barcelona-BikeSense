@@ -95,6 +95,9 @@
             username : 'a7673287-7829-48d0-9f19-1e5427c6111f-bluemix',
             password : '77f13e7ce5da7d3439b3b149a190043961ebf44a3a3a11fb5a72e15f1b4601f7'
           },
+          beforeSend: function (xhr) { 
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa('a7673287-7829-48d0-9f19-1e5427c6111f-bluemix' + ":" + "77f13e7ce5da7d3439b3b149a190043961ebf44a3a3a11fb5a72e15f1b4601f7"));             
+          },
           crossDomain: true,
           success: callback
         });
