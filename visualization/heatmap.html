@@ -18,9 +18,48 @@
     <script src="heatmap.js-2.0/build/heatmap.js"></script>
     <script src="heatmap.js-2.0/plugins/leaflet-heatmap.js"></script>
     <script src="jquery-2.1.1.min.js"></script>
- 
-  </head>
-  <body>
+      <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- CSS add-ons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/material.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <script src="https://cdn.jsdelivr.net/bootstrap.metismenu/1.1.0/js/metismenu.min.js"></script>
+
+</head>
+<body>
+    <!--Navigation bar-->
+    <div class="navbar navbar-fixed-top mprobe-nav" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="mprobe-nav-brand" href="#">Barcelona <b>BikeSense</b></a>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href data-toggle="dropdown">Dashboards <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="heatmap.html">Heatmap</a></li>
+                            <li><a href="first_map.html">Path tracking</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/Navigation bar-->
+    <div id="padding" style="min-height: 60px"></div>
+
+
    <h1>Leaflet Heatmap Layer Example</h1>
    <div id="map"></div>
     <script>
@@ -38,11 +77,11 @@
         var cfg = {
           // radius should be small ONLY if scaleRadius is true (or small radius is intended)
           "radius": 100,
-          "maxOpacity": .8, 
+          "maxOpacity": .8,
           // scales the radius based on map zoom
-          "scaleRadius": false, 
+          "scaleRadius": false,
           // if set to false the heatmap uses the global maximum for colorization
-          // if activated: uses the data maximum within the current map boundaries 
+          // if activated: uses the data maximum within the current map boundaries
           //   (there will always be a red spot with useLocalExtremas true)
           "useLocalExtrema": true,
           // which field name in your data represents the latitude - default "lat"
@@ -79,7 +118,6 @@
         );
         plot({max:8, data:data});
       };
-          
 
         $.ajax({
           type: "GET",
@@ -95,15 +133,18 @@
             username : 'a7673287-7829-48d0-9f19-1e5427c6111f-bluemix',
             password : '77f13e7ce5da7d3439b3b149a190043961ebf44a3a3a11fb5a72e15f1b4601f7'
           },
-          beforeSend: function (xhr) { 
-            xhr.setRequestHeader('Authorization', 'Basic ' + btoa('a7673287-7829-48d0-9f19-1e5427c6111f-bluemix' + ":" + "77f13e7ce5da7d3439b3b149a190043961ebf44a3a3a11fb5a72e15f1b4601f7"));             
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa('a7673287-7829-48d0-9f19-1e5427c6111f-bluemix' + ":" + "77f13e7ce5da7d3439b3b149a190043961ebf44a3a3a11fb5a72e15f1b4601f7"));
           },
           crossDomain: true,
           success: callback
         });
 
-      
+
       };
     </script>
   </body>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </html>

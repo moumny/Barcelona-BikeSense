@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>User view | BikeSense</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="heatmap.js-2.0/build/heatmap.js"></script>
+    <script src="heatmap.js-2.0/plugins/leaflet-heatmap.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- CSS add-ons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/material.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <script src="https://cdn.jsdelivr.net/bootstrap.metismenu/1.1.0/js/metismenu.min.js"></script>
+
     <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
     <style>
       html, body, #map {
@@ -12,30 +25,60 @@
         margin: 0;
       }
     </style>
-  <link rel="stylesheet" href="bootstrap-theme.min.css" />
-      <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="http://libs.cartodb.com/cartodb.js/v3/3.11/themes/css/cartodb.css" />
       <link rel="stylesheet" href="site.css" />
-  </head>
-  <body>
+</head>
+<body>
+    <!--Navigation bar-->
+    <div class="navbar navbar-fixed-top mprobe-nav" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="mprobe-nav-brand" href="#">Barcelona <b>BikeSense</b></a>
+            </div>
 
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href data-toggle="dropdown">Dashboards <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="heatmap.html">Heatmap</a></li>
+                            <li><a href="first_map.html">Path tracking</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/Navigation bar-->
+    <div id="padding" style="min-height: 60px"></div>
     <div id="chart" style="min-width: 310px;   margin: 0 auto"></div>
-<div id="chartSelector">
-      <button class="btn btn-default" id="showTemperatureChart">Temperature</button><br />
-    <button class="btn btn-default" id="showNoiseChart">Noise</button><br />
-     <button class="btn btn-default" id="showPollutionChart">Pollution</button><br />
-    <button class="btn btn-default" id="showHumidityChart">Humidity</button>
-      </div>
-      <div id="bottom-section">
-    <div id="map"></div></div>
-      <script src="jquery-2.1.1.min.js"></script>
-<script src="bootstrap.min.js"></script>
+    <div id="chartSelector">
+        <button class="btn btn-default" id="showTemperatureChart">Temperature</button>
+        <br/>
+        <button class="btn btn-default" id="showNoiseChart">Noise</button>
+        <br/>
+        <button class="btn btn-default" id="showPollutionChart">Pollution</button>
+        <br/>
+        <button class="btn btn-default" id="showHumidityChart">Humidity</button>
+    </div>
+    <div id="bottom-section">
+        <div id="map"></div>
+    </div>
+    <script src="jquery-2.1.1.min.js"></script>
     <script src="http://libs.cartodb.com/cartodb.js/v3/3.11/cartodb.js"></script>
 
- 
-  <script src="highcharts.js"></script>
-    <script src="./sensor_path.js"></script>
-    
 
-  </body>
+    <script src="highcharts.js"></script>
+    <script src="./sensor_path.js"></script>
+
+</body>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </html>
