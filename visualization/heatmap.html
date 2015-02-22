@@ -37,7 +37,7 @@
 
         var cfg = {
           // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-          "radius": 15,
+          "radius": 100,
           "maxOpacity": .8, 
           // scales the radius based on map zoom
           "scaleRadius": false, 
@@ -58,7 +58,7 @@
 
         var map = new L.Map('map', {
           center: new L.LatLng(41.388, 2.11),
-          zoom: 12,
+          zoom: 13,
           layers: [baseLayer, heatmapLayer]
         });
 
@@ -72,8 +72,8 @@
         var data = result.rows.map(
           function(obj){
             var val = obj.value.sensor_value;
-            var latt = obj.value.lat;// + (0.1 * Math.random());
-            var lon = obj.value.lon; //+ (0.1 * Math.random());
+            var latt = obj.value.lat + (0.1 * Math.random());
+            var lon = obj.value.lon+ (0.1 * Math.random());
             return {lat:latt, lng:lon, count:val};
          }
         );
@@ -84,7 +84,7 @@
         $.ajax({
           type: "GET",
           //url: "https://a7673287-7829-48d0-9f19-1e5427c6111f-bluemix.cloudant.com/measurements/_all_docs?include_docs=true",
-          url:'https://a7673287-7829-48d0-9f19-1e5427c6111f-bluemix.cloudant.com/measurements/_design/temperature/_view/new-view?include_docs=true',
+          url:'https://a7673287-7829-48d0-9f19-1e5427c6111f-bluemix.cloudant.com/measurements/_design/temperature/_view/temperature?include_docs=true',
           username:"a7673287-7829-48d0-9f19-1e5427c6111f-bluemix",
           password:"77f13e7ce5da7d3439b3b149a190043961ebf44a3a3a11fb5a72e15f1b4601f7",
           xhrFields: {

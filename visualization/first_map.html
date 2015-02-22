@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Custom infowindow example | CartoDB.js</title>
+    <title>User view | BikeSense</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
@@ -12,20 +12,30 @@
         margin: 0;
       }
     </style>
-
+  <link rel="stylesheet" href="bootstrap-theme.min.css" />
+      <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="http://libs.cartodb.com/cartodb.js/v3/3.11/themes/css/cartodb.css" />
+      <link rel="stylesheet" href="site.css" />
   </head>
   <body>
 
-    <canvas id="chart"  height="200"></canvas>
-
-    <div id="map"></div>
-
+    <div id="chart" style="min-width: 310px;   margin: 0 auto"></div>
+<div id="chartSelector">
+      <button class="btn btn-default" id="showTemperatureChart">Temperature</button><br />
+    <button class="btn btn-default" id="showNoiseChart">Noise</button><br />
+     <button class="btn btn-default" id="showPollutionChart">Pollution</button><br />
+    <button class="btn btn-default" id="showHumidityChart">Humidity</button>
+      </div>
+      <div id="bottom-section">
+    <div id="map"></div></div>
+      <script src="jquery-2.1.1.min.js"></script>
+<script src="bootstrap.min.js"></script>
     <script src="http://libs.cartodb.com/cartodb.js/v3/3.11/cartodb.js"></script>
 
-    <script src="Chart.js-master/Chart.js"></script>
-
+ 
+  <script src="highcharts.js"></script>
     <script src="./sensor_path.js"></script>
+    
 
   </body>
 </html>

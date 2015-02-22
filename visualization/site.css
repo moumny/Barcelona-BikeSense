@@ -1,0 +1,38 @@
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important; 
+   font-weight: 300 !important;
+}
+
+#chart{
+    margin-top: 5px;
+    height: 170px;
+    width: 88%;   
+    float: left;
+    display: table-cell;  
+}
+#chartSelector{
+    min-height: 300px;
+    width: 150px;
+    height: 30%;
+    display: table-cell;
+    float: right;
+    margin-right: 10px;
+}
+
+#chartSelector > *{
+    margin-top: 4px;
+    margin-left: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+#bottom-section{
+    height: 77%;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.highcharts-title,  .highcharts-yaxis-title,  .highcharts-xaxis-title{
+  display: none;
+}
