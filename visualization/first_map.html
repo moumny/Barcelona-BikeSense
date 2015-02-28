@@ -4,18 +4,23 @@
     <title>User view | BikeSense</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-
-     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+ 
+    <script src="jquery-2.1.1.min.js"></script>
+    <script src="cartodb.js"></script>
+    <script src="highcharts.js"></script>
+   
+     <script src="leaflet.js"></script>
     <script src="heatmap.js-2.0/build/heatmap.js"></script>
     <script src="heatmap.js-2.0/plugins/leaflet-heatmap.js"></script>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+     <script src="./sensor_path.js"></script>
+     <script src="metismenu.min.js"></script>
     <!-- CSS add-ons -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/material.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-
-    <script src="https://cdn.jsdelivr.net/bootstrap.metismenu/1.1.0/js/metismenu.min.js"></script>
+  
 
     <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
     <style>
@@ -57,9 +62,9 @@
     </div>
     <!--/Navigation bar-->
     <div id="padding" style="min-height: 60px"></div>
-    <div id="chart" style="min-width: 310px;   margin: 0 auto"></div>
+    <div id="chart" ></div> <!-- style="min-width: 310px;   margin: 0 auto"-->
     <div id="chartSelector">
-        <button class="btn btn-default" id="showTemperatureChart">Temperature</button>
+        <button class="btn btn-info" id="showTemperatureChart">Temperature</button>
         <br/>
         <button class="btn btn-default" id="showNoiseChart">Noise</button>
         <br/>
@@ -70,12 +75,7 @@
     <div id="bottom-section">
         <div id="map"></div>
     </div>
-    <script src="jquery-2.1.1.min.js"></script>
-    <script src="http://libs.cartodb.com/cartodb.js/v3/3.11/cartodb.js"></script>
-
-
-    <script src="highcharts.js"></script>
-    <script src="./sensor_path.js"></script>
+   
 
 </body>
 

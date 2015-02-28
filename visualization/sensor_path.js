@@ -1,13 +1,18 @@
 window.onload = function() {
-        var vizjson = 'http://moumny.cartodb.com/api/v2/viz/d67864b2-b9e5-11e4-ac53-0e9d821ea90d/viz.json';
+       var vizjson = 'http://moumny.cartodb.com/api/v2/viz/d67864b2-b9e5-11e4-ac53-0e9d821ea90d/viz.json';
+       // var vizjson = 'viz.json';
         cartodb.createVis('map', vizjson);
-
+    
+    
 /////// Chart /////////////////////////////////////////////////////////////////////////
+    
+    init();
+    
 $("#showTemperatureChart").on("click", function(evt){
       $("#chartSelector .btn").removeClass("btn-info").addClass("btn-default");
      $(evt.target).addClass("btn-info");
      requestData("temperature", function(result){
-         pollutionCallback(result, "Temperature", "°C");        
+         sensorCallback(result, "Temperature", "°C");        
      });
 });
 
@@ -15,7 +20,7 @@ $("#showPollutionChart").on("click", function(evt){
      $("#chartSelector .btn").removeClass("btn-info").addClass("btn-default");
      $(evt.target).addClass("btn-info");
      requestData("pollution", function(result){
-         pollutionCallback(result, "Pollution", "PM");
+         sensorCallback(result, "Pollution", "PM");
      });
 });
     
@@ -23,19 +28,23 @@ $('#showHumidityChart').on("click", function(evt){
      $("#chartSelector .btn").removeClass("btn-info").addClass("btn-default");
      $(evt.target).addClass("btn-info");
      requestData("humidity", function(result){
-         pollutionCallback(result, "Humidity", "%");
+         sensorCallback(result, "Humidity", "%");
      });
 });
 $("#showNoiseChart").on("click", function(evt){
      $("#chartSelector .btn").removeClass("btn-info").addClass("btn-default");
      $(evt.target).addClass("btn-info");
      requestData("audio", function(result){
-         pollutionCallback(result, "Noise", "dB");
+         sensorCallback(result, "Noise", "dB");
      });
 });
-    $("#showTemperatureChart").trigger("click");
+   
      }
-
+var init = function(){
+    requestData("temperature", function(result){
+         sensorCallback(result, "Temperature", "°C");        
+     });
+}
 var requestData = function(type, callback){
 
     var temperatureUrl = 'https://a7673287-7829-48d0-9f19-1e5427c6111f-bluemix.cloudant.com/measurements/_design/temperature/_view/new-view?include_docs=true';
@@ -111,8 +120,8 @@ var plotting = function(data, yAxis, yAxisFormat){
 
 }
 
-pollutionCallback = function(result, chartTitle, units){
-    var pollutionData = [];
+sensorCallback = function(result, chartTitle, units){
+    var sensorData = [];
         var data = result.rows.map(
           function(obj){
             var val = obj.value.sensor_value;
@@ -121,13 +130,13 @@ pollutionCallback = function(result, chartTitle, units){
             var t = obj.value.timestamp;
             var timestamp=Date.parse(t)
 
-            pollutionData.push([t, val]);
+            sensorData.push([t, val]);
 
             
         
          }
         );
-        plotting(pollutionData, chartTitle, units);
+        plotting(sensorData, chartTitle, units);
       };
           
 

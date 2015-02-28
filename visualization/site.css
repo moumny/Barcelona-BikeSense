@@ -4,7 +4,7 @@ body {
 }
 
 #chart{
-    margin-top: 5px;
+    margin-top: -8px;
     height: 170px;
     width: 88%;   
     float: left;
@@ -27,7 +27,7 @@ body {
 }
 
 #bottom-section{
-    height: 70%;
+    height: 67%;
     position: fixed;
     width: 100%;
     bottom: 0;
