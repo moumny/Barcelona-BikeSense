@@ -59,8 +59,6 @@
     <!--/Navigation bar-->
     <div id="padding" style="min-height: 60px"></div>
 
-
-   <h1>Leaflet Heatmap Layer Example</h1>
    <div id="map"></div>
     <script>
 
@@ -76,7 +74,7 @@
 
         var cfg = {
           // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-          "radius": 100,
+          "radius": 25,
           "maxOpacity": .8,
           // scales the radius based on map zoom
           "scaleRadius": false,
@@ -111,8 +109,8 @@
         var data = result.rows.map(
           function(obj){
             var val = obj.value.sensor_value;
-            var latt = obj.value.lat;// + (0.1 * Math.random());
-            var lon = obj.value.lon;//+ (0.1 * Math.random());
+            var latt = obj.value.lat + (0.1 * Math.random());
+            var lon = obj.value.lon + (0.1 * Math.random());
             return {lat:latt, lng:lon, count:val};
          }
         );
