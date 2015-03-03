@@ -7,6 +7,7 @@ window.onload = function() {
 /////// Chart /////////////////////////////////////////////////////////////////////////
 
     init();
+var trip;
 
 $("#showTemperatureChart").on("click", function(evt){
       $("#chartSelector .btn").removeClass("btn-info").addClass("btn-default");
@@ -42,7 +43,28 @@ $("#showNoiseChart").on("click", function(evt){
      }
 var init = function(){
     requestData("temperature", function(result){
-         sensorCallback(result, "Temperature", "°C");
+         sensorCallback(result, "Temperature", "°C", "Sun Feb 22 2015");
+         var trips = [
+            {
+                name: "Sun Feb 22 2015",
+                value:"Sun Feb 22 2015",
+            },
+            {
+                name:"Sat Feb 21 2015",
+                value: "Sat Feb 21 2015",
+                subitems: [
+                  ]
+            }];
+         $.each(trips, function(){
+            $("<option />")
+            .attr("value", this.value)
+            .html(this.name)
+            .appendTo("#tripselector");
+        });
+        $("#tripselector").change(function(){
+            trip = $(this).val();
+            sensorCallback(result, "Temperature", "°C", trip);
+        }).change();
      });
 }
 var requestData = function(type, callback){
@@ -112,7 +134,7 @@ var plotting = function(data, yAxis, yAxisFormat){
 
 }
 
-sensorCallback = function(result, chartTitle, units){
+sensorCallback = function(result, chartTitle, units, tripId){
     var sensorData = [];
         var data = result.rows.map(
           function(obj){
@@ -120,9 +142,10 @@ sensorCallback = function(result, chartTitle, units){
             var latt = obj.value.lat;// + (0.1 * Math.random());
             var lon = obj.value.lon; //+ (0.1 * Math.random());
             var t = obj.value.timestamp;
-            var timestamp=Date.parse(t)
-
-            sensorData.push([t*1000, val]);
+            var timestamp= new Date(t*1000)
+            console.log(timestamp.toDateString());
+            if(timestamp.toDateString() == trip)
+                sensorData.push([t*1000, val]);
          }
         );
         plotting(sensorData, chartTitle, units);

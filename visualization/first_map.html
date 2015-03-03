@@ -4,11 +4,11 @@
     <title>User view | BikeSense</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
- 
+
     <script src="jquery-2.1.1.min.js"></script>
     <script src="cartodb.js"></script>
     <script src="highcharts.js"></script>
-   
+
      <script src="leaflet.js"></script>
     <script src="heatmap.js-2.0/build/heatmap.js"></script>
     <script src="heatmap.js-2.0/plugins/leaflet-heatmap.js"></script>
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/material.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-  
+
 
     <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
     <style>
@@ -64,18 +64,18 @@
     <div id="padding" style="min-height: 60px"></div>
     <div id="chart" ></div> <!-- style="min-width: 310px;   margin: 0 auto"-->
     <div id="chartSelector">
-        <button class="btn btn-info" id="showTemperatureChart">Temperature</button>
-        <br/>
-        <button class="btn btn-default" id="showNoiseChart">Noise</button>
-        <br/>
-        <button class="btn btn-default" id="showPollutionChart">Pollution</button>
-        <br/>
-        <button class="btn btn-default" id="showHumidityChart">Humidity</button>
+        <select id="tripselector"></select>
+        <select id="sensorselector">
+            <option id="showTemperatureChart" selected="selected">Temperature</option>
+            <option id="showNoiseChart">Noise</option>
+            <option id="showPollutionChart">Pollution</option>
+            <option id="showHumidityChart">Humidity</option>
+        </select>
     </div>
     <div id="bottom-section">
         <div id="map"></div>
     </div>
-   
+
 
 </body>
 
