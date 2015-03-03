@@ -7,7 +7,7 @@ window.onload = function() {
 /////// Chart /////////////////////////////////////////////////////////////////////////
 
     init();
-var trip;
+trip = "Sun Feb 22 2015";
 
 $("#showTemperatureChart").on("click", function(evt){
       $("#chartSelector .btn").removeClass("btn-info").addClass("btn-default");
@@ -134,7 +134,7 @@ var plotting = function(data, yAxis, yAxisFormat){
 
 }
 
-sensorCallback = function(result, chartTitle, units, tripId){
+sensorCallback = function(result, chartTitle, units){
     var sensorData = [];
         var data = result.rows.map(
           function(obj){
@@ -143,7 +143,6 @@ sensorCallback = function(result, chartTitle, units, tripId){
             var lon = obj.value.lon; //+ (0.1 * Math.random());
             var t = obj.value.timestamp;
             var timestamp= new Date(t*1000)
-            console.log(timestamp.toDateString());
             if(timestamp.toDateString() == trip)
                 sensorData.push([t*1000, val]);
          }
